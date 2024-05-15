@@ -1,0 +1,284 @@
+/* General styles */
+body {
+  font-family: sans-serif; /* Choose a preferred font family */
+  margin: 0;
+  padding: 0;
+  background-color: blanchedalmond;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Book details section */
+.book-item .details {
+  display: none; /* Initially hidden */
+  margin-top: 1rem;
+}
+
+.book-item:hover .details {
+  display: block; /* Reveal details on hover */
+}
+
+/* Specific element styles */
+.book-item span {
+  margin-right: 1rem;
+}
+
+.book-item button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff; /* Adjust for hover/active states */
+  color: #333; /* Adjust for hover/active states */
+}
+
+.book-item button:hover {
+  background-color: #eee; /* Lighten background on hover */
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  padding: 1rem;
+  border: 1px solid red;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+  .book-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-item .details {
+    margin-top: 0;
+  }
+}
+
+/* Login Container */
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Login Form Container */
+.login_container {
+  width: 300px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Login Text */
+.login_text h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Form Label */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Form Input */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Submit Button */
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Library List Container */
+.library-container {
+  margin: 20px;
+}
+
+/* Get Library Button */
+.get-library-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.get-library-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Library List */
+.library-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Library Item */
+.library-item {
+  display: flex;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.library-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Register Library Button */
+.register-library-btn {
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.register-library-btn:hover {
+  background-color: #218838;
+}
+
+/* Book List Container */
+.book-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Book Item */
+.book-item {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+
+/* Additional Details */
+.book-details {
+  margin-top: 10px;
+}
+
+/* Book Details */
+.book-details span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Button Styles */
+.book-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.book-button:hover {
+  background-color: #0056b3;
+}
+/* User Container */
+.user-container {
+  margin: 20px;
+}
+
+/* User Email */
+.user-email {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Loan Item */
+.loan-item {
+  margin-bottom: 20px;
+}
+
+/* Loan Details */
+.loan-details {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Loan Book Name */
+.loan-book-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Loan Info List */
+.loan-info-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Loan Info Item */
+.loan-info-item {
+  margin-bottom: 5px;
+}
+
+/* Loan Date */
+.loan-date {
+  font-weight: bold;
+}
+
+/* Loan Penalty */
+.loan-penalty {
+  font-style: italic;
+  color: #ff0000; /* Red color for penalty */
+}
