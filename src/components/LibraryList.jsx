@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "./card/Card";
+import { useSelector } from "react-redux";
 
 function LibraryList() {
   const [library, setLibrary] = useState([]);
+  const [updatedLibrary, setUpdatedLibrary] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const searchInputValue = useSelector((state) => state.user.searchInput);
   const navigate = useNavigate();
 
   const getLibrary = async () => {
@@ -21,7 +24,12 @@ function LibraryList() {
 
   const registerLibrary = async (libraryID) => {
     try {
-      const response = await axios.get("/api/library/register/" + localStorage.getItem("username") + "/" + +libraryID);
+      const response = await axios.get(
+        "/api/library/register/" +
+          localStorage.getItem("username") +
+          "/" +
+          +libraryID
+      );
       setLibrary(response.data);
       setIsLoaded(true); // Veri alındığında isLoaded state'i true yapılıyor
       console.log(response.data);
@@ -54,7 +62,17 @@ function LibraryList() {
     getLibrary();
   }, []); // useEffect içindeki bağımlılıklar boş olduğunda sadece bir kez çalışacak
 
-  // Kütüphane listesi render ediliyor
+  useEffect(() => {
+    if (searchInputValue === "") {
+      setUpdatedLibrary(library);
+    } else {
+      setUpdatedLibrary(
+        library.filter((item) =>
+          item.name.toLowerCase().includes(searchInputValue.toLowerCase())
+        )
+      );
+    }
+  }, [searchInputValue]);
   return (
     <div className="library-container">
       {" "}
@@ -67,7 +85,11 @@ function LibraryList() {
         {isLoaded &&
           // isLoaded true olduğunda çalışacak
           library.map((item) => (
-            <li className="library-item" key={item.libraryID} onClick={() => navigateBookList(item.libraryID)}>
+            <li
+              className="library-item"
+              key={item.libraryID}
+              onClick={() => navigateBookList(item.libraryID)}
+            >
               {" "}
               {/* Ekle: library-item class'ı */}
               {item.name}
@@ -81,6 +103,8 @@ function LibraryList() {
               </button>
             </li>
           ))}
+        <Card bookname={"deneme"} barrowed={true} date={" 10.3000.30"} />
+        <Card barrowed={false} />
       </ul>
     </div>
   );
