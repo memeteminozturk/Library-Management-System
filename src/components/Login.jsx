@@ -1,6 +1,5 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-// import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -59,22 +58,24 @@ function Login() {
   return (
     <div>
       <div className="login">
-        <div className="login_container">
-          <div className="login_text">
-            <h1>Sign in</h1>
+        <div className="container">
+          <div className="login_container">
+            <div className="login_text">
+              <h1>Giriş Yap</h1>
+            </div>
+            <form action="submit" onSubmit={userLogin}>
+              <div>
+                <label htmlFor="user">Kullanıcı adı</label>
+                <input id="user" type="text" onChange={handleUsername} />
+              </div>
+              <div>
+                <label htmlFor="password">Şifre</label>
+                <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <button type="submit">Giriş Yap</button>
+            </form>
+            {err}
           </div>
-          <form action="submit" onSubmit={userLogin}>
-            <div>
-              <label htmlFor="user">Username</label>
-              <input id="user" type="text" onChange={handleUsername} />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input id="password" type="text" onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <button type="submit">bas</button>
-          </form>
-          {err}
         </div>
       </div>
     </div>
