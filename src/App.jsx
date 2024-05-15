@@ -8,9 +8,10 @@ import Admin from "./components/Admin";
 import axios from "axios";
 import { useEffect } from "react";
 import User from "./components/User";
+import Navbar from "./components/Navbar";
 
 function App() {
-  const routes = createBrowserRouter([
+  const routes = [
     {
       path: "/",
       element: <LibraryList />,
@@ -35,8 +36,18 @@ function App() {
       path: "user",
       element: <User />,
     },
-  ]);
-  return <RouterProvider router={routes} />;
+  ];
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Routes>
+
+    </>
+  );
 }
 
 export default App;
