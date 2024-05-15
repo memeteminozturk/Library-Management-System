@@ -1,13 +1,13 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from 'react-hot-toast'; 
 import { useNavigate } from "react-router-dom";
 
 // import { TokenContext } from "../../context/AppProvider";
 
 function Login() {
   const [password, setPassword] = useState("");
-  const [err, setErr] = useState("");
   // const { username, setUsername, userData, setUserData } = useContext(TokenContext);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function Login() {
     try {
       const response = await axios.post("/api/auth", {
         username: username,
-        password: password,
+        password: password
       });
 
       console.log(response.data.token);
@@ -31,7 +31,10 @@ function Login() {
       // navigate("/main");
     } catch (error) {
       console.error(error);
-      setErr(error.response.data.messages[0]);
+      toast.error(error.response.data.messages[0], {
+        duration: 4000,
+        position: 'bottom-center',
+      });
     }
   };
 
@@ -74,7 +77,6 @@ function Login() {
               </div>
               <button type="submit">Giriş Yap</button>
             </form>
-            {err}
           </div>
         </div>
       </div>

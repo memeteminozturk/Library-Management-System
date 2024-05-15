@@ -22,10 +22,10 @@ function Admin() {
       const response = await axios.get("/api/library/getLoan/" + id);
       const loansData = response.data;
       setLoans(loansData);
-      console.log(loansData);
+      console.log("Ceza Bilgileri " + loansData);
 
       const currentDate = getCurrentDate().split("-").join("");
-      console.log(currentDate);
+      console.log("Current Date: " + currentDate);
 
       // Ceza hesaplama işlemleri burada gerçekleştirilebilir
       loansData.forEach((loan) => {
@@ -65,13 +65,13 @@ function Admin() {
   }
   return (
     <div>
-      <div onClick={getUsers}>Kullanıcları göster</div>
+      <div onClick={getUsers}>Kullanıcıları Getir</div>
 
       {users.map((user, index) => (
         <div key={index}>
           <h2>{user.username}</h2>
           <h3>{loans && penalty > 0 && penalty}</h3>
-          <button onClick={() => getLoans(user.id)}>ceza güncelle</button>
+          <button onClick={() => getLoans(user.id)}>Ceza Güncelle</button>
         </div>
       ))}
     </div>
