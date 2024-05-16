@@ -9,6 +9,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import User from "./components/User";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   const routes = [
@@ -45,6 +46,7 @@ function App() {
           <Route key={index} path={route.path} element={route.element} />
         ))}
       </Routes>
+      <Footer />
 
     </>
   );
