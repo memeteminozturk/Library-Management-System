@@ -3,7 +3,7 @@ import Login from "./components/Login";
 import LibraryList from "./components/LibraryList";
 import GetLoans from "./components/GetLoans";
 import Book from "./components/Book";
-import { Route, RouterProvider, Routes, useLocation } from "react-router-dom";
+import { Route, RouterProvider, Routes, useLocation, useNavigate } from "react-router-dom";
 import Admin from "./components/Admin";
 import axios from "axios";
 import { useEffect } from "react";
@@ -55,26 +55,32 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("token") && !user.username) {
       getUser();
+    } else if (!localStorage.getItem("token") && !user.username && location.pathname !== "/login") {
+      navigate("/login");
     }
   }, [location]);
 
   const getUser = async () => {
     try {
-      const response = await axios.get("/api/test", {
+      const res = await axios.get("/api/test", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      dispatch(setUser(response.data));
-    }
-    catch (error) {
+
+      dispatch(setUser(res.data));
+      localStorage.setItem("username", res.data.id);
+    } catch (error) {
       console.error(error);
+      localStorage.removeItem("token");
+      navigate("/login");
     }
-  }
+  };
 
   return (
     <>

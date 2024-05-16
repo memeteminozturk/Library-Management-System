@@ -5,7 +5,7 @@ import { FiBook } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Card({ bookname, stock, author, date, bookId, barrowed }) {
+function Card({ bookname, stock, author, date, bookId, barrowed, penalty, cardClick }) {
 
   const [library, setLibrary] = useState([]);
   const [loans, setLoans] = useState([]);
@@ -64,7 +64,7 @@ function Card({ bookname, stock, author, date, bookId, barrowed }) {
   };
 
   return (
-    <div className="card" onClick={() => navigateBookDetail(bookId)}>
+    <div className="card" onClick={cardClick ? () => navigateBookDetail(bookId) : null}>
       <div className="card-body">
         <div className="card-title">{bookname}</div>
         <div className="card-icon">
@@ -85,7 +85,8 @@ function Card({ bookname, stock, author, date, bookId, barrowed }) {
         )}
         {barrowed ? (
           <div className="card-footer">
-            <div>Ödünç tarihi :{date}</div>
+            <div>Ceza: {penalty}TL</div>
+            <div>Teslim tarihi: {date}</div>
           </div>
         ) : (
           <div className="card-footer">Stok: {stock}</div>

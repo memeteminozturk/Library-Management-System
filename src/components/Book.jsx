@@ -93,6 +93,7 @@ function Book() {
                 stock={bookItem.bookDetails.stock}
                 bookId={bookItem.bookDetails.isbn}
                 key={index}
+                cardClick={true}
               />
             ))
           ) : (
