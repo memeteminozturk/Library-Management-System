@@ -12,19 +12,6 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 const Slider = () => {
 
-  const slides = [];
-
-  for (let i = 0; i < 5; i += 1) {
-    slides.push(
-      <SwiperSlide key={`slide-${i}`} tag="li">
-        <img
-          src={`https:/loremflickr.com/4000/2000/book?random=${i}`}
-          alt={`Slider Img-${i+1}`}
-        />
-      </SwiperSlide>
-    );
-  }
-
   return (
     <section className="home-slider">
       <Swiper
@@ -44,7 +31,15 @@ const Slider = () => {
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log('slide change')}
       >
-        {slides}
+        <SwiperSlide>
+          <img src="https://i.pinimg.com/originals/42/5a/fe/425afe2a2b16375f86edcebfbb42ef6c.jpg" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://wallpapercave.com/wp/wp12420099.jpg" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://images7.alphacoders.com/133/1338193.png" alt="" />
+        </SwiperSlide>
         <div className="swiper-button-prev1">
           <FontAwesomeIcon icon={faChevronLeft} />
         </div>
