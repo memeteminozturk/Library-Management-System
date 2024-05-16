@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "./card/Card";
 import { useSelector } from "react-redux";
+import Slider from "./Slider";
 
 function LibraryList() {
   const [library, setLibrary] = useState([]);
@@ -26,9 +27,9 @@ function LibraryList() {
     try {
       const response = await axios.get(
         "/api/library/register/" +
-          localStorage.getItem("username") +
-          "/" +
-          +libraryID
+        localStorage.getItem("username") +
+        "/" +
+        +libraryID
       );
       setLibrary(response.data);
       setIsLoaded(true); // Veri alındığında isLoaded state'i true yapılıyor
@@ -57,10 +58,10 @@ function LibraryList() {
       // Hata durumunda kullanıcıya uygun geri bildirim yapılabilir
     }
   };
+
   useEffect(() => {
-    // İlk çağrıyı yap
     getLibrary();
-  }, []); // useEffect içindeki bağımlılıklar boş olduğunda sadece bir kez çalışacak
+  }, []);
 
   useEffect(() => {
     if (searchInputValue === "") {
@@ -73,39 +74,38 @@ function LibraryList() {
       );
     }
   }, [searchInputValue]);
+
   return (
-    <div className="library-container">
-      {" "}
-      {/* Ekle: library-container class'ı */}
-      <h1>Sistemdeki Kütüphaneler</h1>
-      {/* Ekle: get-library-btn class'ı */}
-      <ul className="library-list">
-        {" "}
-        {/* Ekle: library-list class'ı */}
-        {isLoaded &&
-          // isLoaded true olduğunda çalışacak
-          library.map((item) => (
-            <li
-              className="library-item"
-              key={item.libraryID}
-              onClick={() => navigateBookList(item.libraryID)}
-            >
-              {" "}
-              {/* Ekle: library-item class'ı */}
-              {item.name}
-              <button
-                onClick={() => {
-                  registerLibrary(item.libraryID);
-                }}
-                className="register-library-btn" // Ekle: register-library-btn class'ı
+    <div className="library">
+      <Slider />
+      <div className="container">
+        <h1 className="library-title">Kayıtlı Kütüphanelerimiz</h1>
+        <ul className="library-list">
+          {isLoaded &&
+            library.map((item) => (
+              <li
+                className="library-item"
+                key={item.libraryID}
+                onClick={() => navigateBookList(item.libraryID)}
               >
-                Giriş yap
-              </button>
-            </li>
-          ))}
-        <Card bookname={"deneme"} barrowed={true} date={" 10.3000.30"} />
-        <Card barrowed={false} />
-      </ul>
+                <span>
+                  <h2>{item.name}</h2>
+                  <p>{item.address}</p>
+                </span>
+                <button
+                  onClick={() => {
+                    registerLibrary(item.libraryID);
+                  }}
+                  className="register-library-btn"
+                >
+                  Giriş Yap
+                </button>
+              </li>
+            ))}
+          {/* <Card bookname={"deneme"} barrowed={true} date={" 10.3000.30"} />
+        <Card barrowed={false} /> */}
+        </ul>
+      </div>
     </div>
   );
 }
