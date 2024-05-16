@@ -6,6 +6,7 @@
   margin: 20px;
   padding: 20px;
   width: 250px;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -32,18 +33,19 @@
 }
 
 .card-button {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
   font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  border: 2px solid var(--primary-color);
+  transition: all .2s ease-in-out;
 }
 
 .card-button:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color: var(--primary-color);
 }
 
 .card-footer {
