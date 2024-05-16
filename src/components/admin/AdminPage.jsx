@@ -1,7 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import "./AdminPage.css";
+import { useSelector } from "react-redux";
+
 
 const AdminPage = () => {
+
+  const user = useSelector((state) => state.user.user);
+
+  // id: user id
+  // qr: book qr code
+  // newPenalty: new penalty amount
+  const updatePenalty = async (id, qr, newPenalty) => {
+    try {
+      const response = await axios.put("/api/library/updatePenalty/" + id + "/" + qr + "?newPenalty=" + newPenalty);
+      console.log(response.data);
+    }
+    catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  const getUsers = async () => {
+    try {
+      const response = await axios.get("/api/user");
+      console.log(response.data);
+    }
+    catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  // id: user id
+  const getUserLoans = async (id) => {
+    try {
+      const response = await axios.get("/api/library/getLoan/" + id);
+      console.log(response.data);
+    }
+    catch (err) {
+      console.error(err.message);
+    }
+  }
+
+
   return (
     <div className="admin-container">
       <aside className="admin-sidebar">
