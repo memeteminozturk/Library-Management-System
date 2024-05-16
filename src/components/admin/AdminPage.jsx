@@ -13,13 +13,13 @@ const AdminPage = () => {
             <a href="#dashboard">Dashboard</a>
           </li>
           <li>
-            <a href="#users">Users</a>
+            <a href="#users">Kullanıcılar</a>
           </li>
           <li>
-            <a href="#settings">Settings</a>
+            <a href="#settings">Ayarlar</a>
           </li>
           <li>
-            <a href="#logout">Logout</a>
+            <a href="#logout">Çıkış Yap</a>
           </li>
         </ul>
       </aside>
@@ -28,16 +28,16 @@ const AdminPage = () => {
           <h1>Dashboard</h1>
         </header>
         <section id="dashboard" className="admin-section">
-          <h2>Welcome to the Admin Dashboard</h2>
-          <p>Here you can manage your application settings and user data.</p>
+          <h2>Admin Paneline Hoşgeldiniz</h2>
+          <p>Buradan uygulama ayarlarınızı ve kullanıcılarınızı yönetebilirsiniz.</p>
         </section>
         <section id="users" className="admin-section">
-          <h2>User Management</h2>
-          <p>Manage your users here.</p>
+          <h2>Kullanıcı Yönetimi</h2>
+          <p>Kullanıcıları buradan yönetebilirsiniz.</p>
         </section>
         <section id="settings" className="admin-section">
-          <h2>Application Settings</h2>
-          <p>Configure application settings here.</p>
+          <h2>Uygulama Ayarları</h2>
+          <p>Uygulama ayarlarını buradan yapabilirsiniz.</p>
         </section>
       </main>
     </div>

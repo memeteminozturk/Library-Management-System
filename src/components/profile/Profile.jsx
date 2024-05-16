@@ -1,14 +1,29 @@
 import React from "react";
 import "./Profile.css";
 import { FaCircleUser } from "react-icons/fa6";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+
+  const user = useSelector((state) => state.user.user)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(setUser({}));
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    navigate("/login");
+  };
+
   return (
     <div className="profile-container">
       <div className="profile-header">
         <div className="profile-icon">
           <FaCircleUser
-            size={10}
+            size={145}
             style={{
               color: "#f0f0f0",
               backgroundColor: "#333",
@@ -17,21 +32,24 @@ const Profile = () => {
             }}
           />
         </div>
-        <h2 className="profile-name">John Doe</h2>
+        <h2 className="profile-name">{user?.username2}</h2>
       </div>
       <div className="profile-details">
         <div className="profile-detail">
-          <strong>Email:</strong> johndoe@example.com
+          <strong>E-posta:</strong> {user?.email2}
         </div>
         <div className="profile-detail">
-          <strong>Membership:</strong> Premium
+          <strong>Üyelik Türü:</strong> {user?.membershipType}
         </div>
         <div className="profile-detail">
-          <strong>Joined:</strong> January 1, 2023
+          <strong>Katılma Tarihi:</strong> {user?.membershipDate}
         </div>
         <div className="profile-detail">
-          <strong>Books Borrowed:</strong> 12
+          <strong>Ödünç Alınan Kitaplar:</strong> 12
         </div>
+      <button className="profile-button" onClick={logout}>
+        Logout
+      </button>
       </div>
     </div>
   );

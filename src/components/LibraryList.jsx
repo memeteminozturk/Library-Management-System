@@ -23,7 +23,8 @@ function LibraryList() {
     }
   };
 
-  const registerLibrary = async (libraryID) => {
+  const registerLibrary = async (event, libraryID) => {
+    event.stopPropagation();
     try {
       const response = await axios.get(
         "/api/library/register/" +
@@ -94,12 +95,12 @@ function LibraryList() {
                     <p>{item.address}</p>
                   </span>
                   <button
-                    onClick={() => {
-                      registerLibrary(item.libraryID);
+                    onClick={(event) => {
+                      registerLibrary(event, item.libraryID);
                     }}
                     className="register-library-btn"
                   >
-                    Giriş Yap
+                    Kayıt Ol
                   </button>
                 </li>
               ))}

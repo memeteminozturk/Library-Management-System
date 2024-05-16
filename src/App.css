@@ -217,8 +217,7 @@ input:focus {
   transition: all .2s ease-in-out;
 }
 
-.register-library-btn:hover,
-.library-item:hover .register-library-btn {
+.register-library-btn:hover {
   background-color: var(--secondary-color);
 }
 

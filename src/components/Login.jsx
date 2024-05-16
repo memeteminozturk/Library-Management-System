@@ -1,16 +1,15 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from 'react-hot-toast'; 
 import { useNavigate } from "react-router-dom";
-
-// import { TokenContext } from "../../context/AppProvider";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/UserSlice";
 
 function Login() {
   const [password, setPassword] = useState("");
-  // const { username, setUsername, userData, setUserData } = useContext(TokenContext);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const userLogin = async (e) => {
     e.preventDefault();
@@ -20,12 +19,11 @@ function Login() {
         password: password
       });
 
-      console.log(response.data.token);
+      console.log(response.data);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.userId);
       localStorage.getItem("token") && getUser();
       localStorage.getItem("token") && navigate("/");
-      // setUserData({ ...userData, username: username });
       // localStorage.setItem("username", username);
 
       // navigate("/main");
@@ -45,14 +43,14 @@ function Login() {
   };
   const getUser = async () => {
     try {
-      const tes = await axios.get("/api/test", {
+      const res = await axios.get("/api/test", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
-      console.log(tes.data.id);
-      localStorage.setItem("username", tes.data.id);
+      dispatch(setUser(res.data));
+      localStorage.setItem("username", res.data.id);
     } catch (error) {
       console.error(error);
     }
