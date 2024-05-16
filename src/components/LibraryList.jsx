@@ -79,32 +79,32 @@ function LibraryList() {
     <div className="library">
       <Slider />
       <div className="container">
-        <h1 className="library-title">Kayıtlı Kütüphanelerimiz</h1>
-        <ul className="library-list">
-          {isLoaded &&
-            library.map((item) => (
-              <li
-                className="library-item"
-                key={item.libraryID}
-                onClick={() => navigateBookList(item.libraryID)}
-              >
-                <span>
-                  <h2>{item.name}</h2>
-                  <p>{item.address}</p>
-                </span>
-                <button
-                  onClick={() => {
-                    registerLibrary(item.libraryID);
-                  }}
-                  className="register-library-btn"
+        <div className="library-content">
+          <h1 className="library-title">Kayıtlı Kütüphanelerimiz</h1>
+          <ul className="library-list">
+            {isLoaded &&
+              library.map((item) => (
+                <li
+                  className="library-item"
+                  key={item.libraryID}
+                  onClick={() => navigateBookList(item.libraryID)}
                 >
-                  Giriş Yap
-                </button>
-              </li>
-            ))}
-          {/* <Card bookname={"deneme"} barrowed={true} date={" 10.3000.30"} />
-        <Card barrowed={false} /> */}
-        </ul>
+                  <span>
+                    <h2>{item.name}</h2>
+                    <p>{item.address}</p>
+                  </span>
+                  <button
+                    onClick={() => {
+                      registerLibrary(item.libraryID);
+                    }}
+                    className="register-library-btn"
+                  >
+                    Giriş Yap
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

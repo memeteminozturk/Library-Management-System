@@ -73,7 +73,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 70px);
 }
 
 /* Login Form Container */
@@ -165,10 +165,14 @@ input:focus {
   background-color: #0056b3;
 }
 
+.library-content {
+  margin-block: 3rem;
+}
+
 .library-title {
   font-size: 2rem;
   text-align: center;
-  margin-block: 1rem;
+  margin-bottom: 2rem;
 }
 
 /* Library List */
@@ -213,7 +217,8 @@ input:focus {
   transition: all .2s ease-in-out;
 }
 
-.register-library-btn:hover {
+.register-library-btn:hover,
+.library-item:hover .register-library-btn {
   background-color: var(--secondary-color);
 }
 
@@ -324,6 +329,11 @@ footer {
   width: 100%;
 }
 
+
+footer .logo {
+  align-content: center;
+}
+
 footer .logo a {
   font-size: 3rem;
   font-weight: 500;
@@ -339,10 +349,11 @@ footer .logo a:hover {
 
 
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
   padding: 2rem 0;
+  justify-content: center;
 }
 
 .footer-content .list-group {
