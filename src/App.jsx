@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import User from "./components/User";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BookDetail from "./components/BookDetail";
 
 function App() {
   const routes = [
@@ -30,6 +31,10 @@ function App() {
       element: <Book />,
     },
     {
+      path: "/bookList",
+      element: <Book />,
+    },
+    {
       path: "/admin",
       element: <Admin />,
     },
@@ -37,6 +42,10 @@ function App() {
       path: "user",
       element: <User />,
     },
+    {
+      path: "bookDetail/:isbn",
+      element: <BookDetail />,
+    }
   ];
   return (
     <>

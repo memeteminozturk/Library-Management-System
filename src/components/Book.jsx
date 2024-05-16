@@ -1,32 +1,39 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Card from "./card/Card";
+import toast from "react-hot-toast";
 
 function Book() {
   const [book, setBook] = useState([]);
   const [loans, setLoans] = useState([]);
+  const [library, setLibrary] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
-  const libraryId = useParams().id;
+  const { id = 1 } = useParams();
 
   const [author, setAuthor] = useState("");
 
+  const getLibraryById = async (id) => {
+    try {
+      const response = await axios.get("/api/library/getLibrary/" + id);
+      setLibrary(response.data);
+      return response.data;
+    }
+    catch (err) {
+      console.error(err.message);
+    }
+  }
+
   const addLoan = async (bookItem) => {
     getLoans();
-    console.log("loans");
-
     try {
       const loanIsbns = loans.map((loan) => loan.isbn);
-      console.log(loanIsbns);
 
       if (loanIsbns.includes(bookItem.bookDetails.isbn)) {
-        console.log("Aynı ISBN değerine sahip bir kitap var.");
-        alert("bir ktap bir kez ödünç alınablir");
+        toast.error("Bu kitabı zaten ödünç aldınız.");
       } else {
-        console.log("Herhangi bir eşleşen ISBN değeri bulunamadı.");
+        toast.error("Eşleşen herhangi bir ISBN değeri bulunamadı.");
       }
-
-      const response = await axios.get("/api/library/" + localStorage.getItem("username") + "/" + bookItem.qr);
-      console.log(response.data);
 
       getLoans();
       getBooks();
@@ -37,7 +44,7 @@ function Book() {
 
   const getBooks = async () => {
     try {
-      const response = await axios.get("/api/library/getBooks/" + libraryId);
+      const response = await axios.get("/api/library/getBooks/" + id);
       setBook(response.data);
       setIsLoaded(true);
     } catch (err) {
@@ -49,7 +56,6 @@ function Book() {
     try {
       const response = await axios.get("/api/library/loans/" + localStorage.getItem("username"));
       setLoans(response.data);
-      console.log("loan");
     } catch (err) {
       console.error(err.message);
     }
@@ -66,41 +72,35 @@ function Book() {
   };
 
   useEffect(() => {
+    getLibraryById(id);
     getBooks();
     getLoans();
   }, []);
 
+
   return (
-    <div>
-      <h1>{libraryId} numaraları Kütüphanedeki kitaplar</h1>
-      <ul className="book-list">
-        {isLoaded &&
-          book.map((bookItem, index) => (
-            <li className="book-item" key={index}>
-              <div>
-                <span>Kitap Adı: {bookItem.bookDetails.name}</span>
-                <div id={`details${index}`} className="hidden">
-                  <span>ISBN: {bookItem.bookDetails.isbn}</span>
-                  <span>Tür: {bookItem.bookDetails.type}</span>
-                  <span>Basım Yılı: {bookItem.bookDetails.editionNo}</span>
-                  <span>Stok: {bookItem.bookDetails.stock}</span>
-                  <span>Yayıncı: {bookItem.bookDetails.publisher.name}</span>
-                </div>
-              </div>
-              <div>
-                <button onClick={() => addLoan(bookItem)}>Ödünç Al</button>
-                <button
-                  onClick={() => {
-                    getAuthor(bookItem.bookDetails.isbn), document.getElementById(`details${index}`).classList.toggle("hidden");
-                  }}
-                >
-                  Kitap Ayrıntıları
-                </button>
-              </div>
-            </li>
-          ))}
-      </ul>
-    </div>
+    <section className="booklist">
+      <div className="container booklist-container">
+        <div className="booklist-header">
+          <h1>Kitaplar ({book.length})</h1>
+          <h2>{library.name}</h2>
+        </div>
+        <div className="booklist-content">
+          {isLoaded ? (
+            book.map((bookItem, index) => (
+              <Card
+                bookname={bookItem.bookDetails.name}
+                stock={bookItem.bookDetails.stock}
+                bookId={bookItem.bookDetails.isbn}
+                key={index}
+              />
+            ))
+          ) : (
+            <p>Yükleniyor...</p>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
