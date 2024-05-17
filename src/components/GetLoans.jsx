@@ -26,7 +26,7 @@ function GetLoans() {
     <section className="booklist">
       <div className="container booklist-container">
         <div className="booklist-header">
-          <h1>Ödünç Alınan Kitaplar</h1>
+          <h1>Ödünç Alınan Kitaplar ({loans.length})</h1>
         </div>
         <div className="booklist-content">
           {isLoaded ? (

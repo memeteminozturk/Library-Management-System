@@ -44,9 +44,9 @@ const Profile = () => {
         <div className="profile-detail">
           <strong>Katılma Tarihi:</strong> {user?.membershipDate}
         </div>
-        <div className="profile-detail">
+        {/* <div className="profile-detail">
           <strong>Ödünç Alınan Kitaplar:</strong> 12
-        </div>
+        </div> */}
       <button className="profile-button" onClick={logout}>
         Logout
       </button>
