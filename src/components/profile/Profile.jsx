@@ -47,9 +47,9 @@ const Profile = () => {
         {/* <div className="profile-detail">
           <strong>Ödünç Alınan Kitaplar:</strong> 12
         </div> */}
-      <button className="profile-button" onClick={logout}>
-        Logout
-      </button>
+        <button className="profile-button" onClick={logout}>
+          Çıkış Yap
+        </button>
       </div>
     </div>
   );
