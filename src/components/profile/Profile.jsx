@@ -18,6 +18,10 @@ const Profile = () => {
     navigate("/login");
   };
 
+  const formatDateTime = (date) => {
+    return new Date(date).toLocaleString();
+  };
+
   return (
     <div className="profile-container">
       <div className="profile-header">
@@ -42,7 +46,7 @@ const Profile = () => {
           <strong>Üyelik Türü:</strong> {user?.membershipType}
         </div>
         <div className="profile-detail">
-          <strong>Katılma Tarihi:</strong> {user?.membershipDate}
+          <strong>Katılma Tarihi:</strong> {formatDateTime(user?.membershipDate)}
         </div>
         {/* <div className="profile-detail">
           <strong>Ödünç Alınan Kitaplar:</strong> 12
