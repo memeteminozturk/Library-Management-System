@@ -70,7 +70,7 @@ function App() {
       !user.username &&
       location.pathname !== "/login"
     ) {
-      // navigate("/login");
+      navigate("/login");
     }
   }, [location]);
 
