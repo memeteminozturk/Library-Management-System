@@ -3,7 +3,13 @@ import Login from "./components/Login";
 import LibraryList from "./components/LibraryList";
 import GetLoans from "./components/GetLoans";
 import Book from "./components/Book";
-import { Route, RouterProvider, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Admin from "./components/Admin";
 import axios from "axios";
 import { useEffect } from "react";
@@ -15,7 +21,6 @@ import Profile from "./components/profile/Profile";
 import AdminPage from "./components/admin/AdminPage";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
-
 
 function App() {
   const routes = [
@@ -50,7 +55,7 @@ function App() {
     {
       path: "bookDetail/:isbn",
       element: <BookDetail />,
-    }
+    },
   ];
   const location = useLocation();
   const dispatch = useDispatch();
@@ -60,8 +65,12 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("token") && !user.username) {
       getUser();
-    } else if (!localStorage.getItem("token") && !user.username && location.pathname !== "/login") {
-      navigate("/login");
+    } else if (
+      !localStorage.getItem("token") &&
+      !user.username &&
+      location.pathname !== "/login"
+    ) {
+      // navigate("/login");
     }
   }, [location]);
 
@@ -91,7 +100,6 @@ function App() {
         ))}
       </Routes>
       <Footer />
-
     </>
   );
 }
