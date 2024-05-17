@@ -1,70 +1,6 @@
 /* AdminPage.css */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-
 .admin-container {
-  display: flex;
-  min-height: 100vh;
-}
-
-.admin-sidebar {
-  width: 250px;
-  background-color: #044794;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 0 5px 5px 0;
-}
-
-.sidebar-header {
-  padding: 20px;
-  text-align: center;
-}
-
-.sidebar-header h2 {
-  margin: 0 auto;
-}
-
-.sidebar-menu {
-  list-style: none;
-  padding: 20px;
-}
-
-.sidebar-menu li {
-  margin: 15px 0;
-}
-
-.sidebar-menu a {
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-  border-radius: 5px;
-}
-
-.sidebar-menu a:hover {
-  background-color: #1565c0;
-}
-
-.admin-main {
-  flex: 1;
-  padding: 20px;
-}
-
-.admin-header {
-  background-color: #044794;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 5px;
+  min-height: calc(100vh - 70px);
 }
 
 .admin-section {
@@ -77,5 +13,36 @@ body {
 
 .admin-section h2 {
   margin-bottom: 10px;
-  color: #0d47a1; /* Koyu mavi */
+  color: var(--primary-color);
 }
+
+.penalty-update {
+  display: flex;
+}
+
+.penalty-update input {
+  width: 5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.penalty-update button {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 0 5px 5px 0;
+  padding: 0.5rem 1rem;
+}
+
+.penalty-update button:focus {
+  box-shadow: none;
+}
+
+.penalty-update button svg {
+  color: white;
+}
+
+.penalty-update button:hover {
+  background-color: var(--secondary-color);
+}
+
