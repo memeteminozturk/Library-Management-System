@@ -59,15 +59,15 @@ function App() {
   ];
   const location = useLocation();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("token") && !user.username) {
+    if (localStorage.getItem("token") && !user?.username) {
       getUser();
     } else if (
       !localStorage.getItem("token") &&
-      !user.username &&
+      !user?.username &&
       location.pathname !== "/login"
     ) {
       navigate("/login");

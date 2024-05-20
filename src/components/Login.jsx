@@ -22,7 +22,7 @@ function Login() {
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.userId);
-      localStorage.getItem("token") && getUser();
+      // localStorage.getItem("token") && getUser();
       localStorage.getItem("token") && navigate("/");
       // localStorage.setItem("username", username);
 
@@ -41,20 +41,20 @@ function Login() {
     setUsername(e.target.value);
     console.log(username);
   };
-  const getUser = async () => {
-    try {
-      const res = await axios.get("/api/test", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+  // const getUser = async () => {
+  //   try {
+  //     const res = await axios.get("/api/test", {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     });
 
-      dispatch(setUser(res.data));
-      localStorage.setItem("username", res.data.id);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     dispatch(setUser(res.data));
+  //     localStorage.setItem("username", res.data.id);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div>

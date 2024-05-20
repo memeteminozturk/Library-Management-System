@@ -94,6 +94,8 @@ function Book() {
                 bookId={bookItem.bookDetails.isbn}
                 key={index}
                 cardClick={true}
+                qr={bookItem.qr}
+                libraryID={library.libraryID}
               />
             ))
           ) : (

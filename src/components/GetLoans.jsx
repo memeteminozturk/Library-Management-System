@@ -6,10 +6,11 @@ import Card from "./card/Card";
 function GetLoans() {
   const [loans, setLoans] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector((state) => state.user.user);
+  // const user = useSelector((state) => state.user.user);
+
   const getLoans = async () => {
     try {
-      const response = await axios.get("/api/library/getLoan/ " + user.id);
+      const response = await axios.get("/api/library/getLoan/ " + localStorage.getItem("username"));
       setLoans(response.data);
       setIsLoaded(true);
       console.log(response.data);
@@ -40,6 +41,8 @@ function GetLoans() {
                 date={bookItem.returnDate}
                 penalty={bookItem.penalty}
                 cardClick={false}
+                qr={bookItem.qr}
+                libraryID={bookItem.libraryID}
               />
             ))
           ) : (

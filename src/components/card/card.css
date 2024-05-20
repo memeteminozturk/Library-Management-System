@@ -47,6 +47,13 @@
   color: var(--primary-color);
 }
 
+.card-button[disabled] {
+  background-color: #edf3f9;
+  color: #6c757d;
+  border: 2px solid #f8f9fa;
+  cursor: not-allowed;
+}
+
 .card-footer {
   margin-top: 20px;
   font-size: 0.8em;

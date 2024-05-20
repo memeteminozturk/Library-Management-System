@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Card from "./card/Card";
 import { useSelector } from "react-redux";
 import Slider from "./Slider";
+import toast from "react-hot-toast";
 
 function LibraryList() {
   const [library, setLibrary] = useState([]);
   const [updatedLibrary, setUpdatedLibrary] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const searchInputValue = useSelector((state) => state.user.searchInput);
+  const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
   const getLibrary = async () => {
@@ -23,22 +25,23 @@ function LibraryList() {
     }
   };
 
-  const registerLibrary = async (event, libraryID) => {
-    event.stopPropagation();
+  const registerLibrary = async (libraryID) => {
     try {
       const response = await axios.get(
         "/api/library/register/" +
-        localStorage.getItem("username") +
+        user.id +
         "/" +
         +libraryID
       );
-      setLibrary(response.data);
-      setIsLoaded(true); // Veri alındığında isLoaded state'i true yapılıyor
       console.log(response.data);
+      toast.success("Kütüphaneye kayıt oldunuz.");
+      navigate(`/bookList/${libraryID}`);
     } catch (error) {
       console.error(error);
+      toast.error("Kütüphaneye kayıt olunamadı.");
     }
   };
+      
 
   const navigateBookList = (libraryID) => {
     navigate(`/bookList/${libraryID}`);
@@ -96,7 +99,8 @@ function LibraryList() {
                   </span>
                   <button
                     onClick={(event) => {
-                      registerLibrary(event, item.libraryID);
+                      event.stopPropagation();
+                      registerLibrary(item.libraryID);
                     }}
                     className="register-library-btn"
                   >
